@@ -14,5 +14,5 @@ export default {
   asterisk: ".MuiFormLabel-asterisk",
   goBackLogin: "[data-testid='go-login']",
   linkHome: "[href='/']",
-  alertMessage: '[class*="Alert-message"]'
+  alertMessage: '[class*="Alert-message"]',
 }

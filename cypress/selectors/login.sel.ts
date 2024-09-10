@@ -7,5 +7,5 @@ export default {
 
   asterisk: "[class*='asterisk']",
   errorEmail: "[id='email-helper-text']",
-  alertMessage: '[class="MuiAlert-message"]'
+  alertMessage: '[class="MuiAlert-message"]',
 }

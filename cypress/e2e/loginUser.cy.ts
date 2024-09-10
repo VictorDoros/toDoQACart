@@ -16,6 +16,7 @@ let user: User
 
 describe("Log in", () => {
   beforeEach(() => {
+    //Create a new object for user
     user = new User()
 
     //Load the page and check that the user was got to the 'Log in' page

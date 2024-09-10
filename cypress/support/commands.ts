@@ -15,7 +15,7 @@ export const checkStateAndTextOfItem = (elementLocator, state, text) => {
 }
 
 /**
- * Check the welcome message after user registering
+ * Check the welcome message after user registering or logging in
  */
 export const checkWelcomeMessage = (elementLocator, user) => {
   cy.get(elementLocator)
@@ -31,21 +31,28 @@ export const checkWelcomeMessage = (elementLocator, user) => {
 }
 
 /**
- * Check the current state of the item and its text
+ * Fill in the input field
  */
 export const fillInTheField = (elementLocator, value) => {
   cy.get(elementLocator).type(value)
 }
 
 /**
- * Check the current state of the item and its text
+ * Click on the element
  */
 export const clickElement = (elementLocator) => {
   cy.get(elementLocator).click()
 }
 
 /**
- * Check the current state of the item and its text
+ * Click on the element containing a specific text
+ */
+export const clickElementContainingText = (textElement) => {
+  cy.contains(textElement).click()
+}
+
+/**
+ * Check the color of the nth element
  */
 export const checkNthElementCSSColor = (elementLocator, orderNumber, color) => {
   cy.get(elementLocator).eq(orderNumber).should("have.css", "color", color)

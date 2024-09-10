@@ -9,5 +9,5 @@ export default {
     "Password must be Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character",
   errorConfirmPasswordField:
     "Second password does not match the first Password",
-  alertMessageEmailRegistered: "Email is already exists in the Database"  
+  alertMessageEmailRegistered: "Email is already exists in the Database",
 }
