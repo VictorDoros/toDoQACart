@@ -97,6 +97,43 @@ describe("Register user", () => {
     checkWelcomeMessage(registerSel.welcomeHeader, user.getFirstName())
   })
 
+  it("Should not be able to register the user with already registered email", () => {
+    cy.step("Hit the [Create new account] button")
+    clickElement(registerSel.createNewAccountButton)
+
+    cy.step("Confirm that the user is on registration page")
+    checkStateAndTextOfItem(
+      registerSel.registrationHeader,
+      basicData.stateData.beVisible,
+      registrationTestData.registrationHeader
+    )
+
+    cy.step("Fill in the 'First Name' field")
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
+
+    cy.step("Fill in the 'Last Name' field")
+    fillInTheField(registerSel.lastNameField, user.getLastName())
+
+    cy.step("Fill in the 'Email' field")
+    fillInTheField(registerSel.emailField, user.getExistingEmail())
+
+    cy.step("Fill in the 'Password' field")
+    fillInTheField(registerSel.passwordField, user.getPassword())
+
+    cy.step("Fill in the 'Confirm Password' field")
+    fillInTheField(registerSel.confirmPasswordField, user.getPassword())
+
+    cy.step("Hit the [Sign up] button")
+    clickElement(registerSel.submitButton)
+
+    cy.step("Confirm that user cannot register with already registered email")
+    checkStateAndTextOfItem(
+      registerSel.alertMessage,
+      basicData.stateData.beVisible,
+      registrationTestData.alertMessageEmailRegistered
+    )
+  })
+
   it("Should receive an error when submitting the registration form with no data", () => {
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
