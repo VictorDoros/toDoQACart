@@ -1,5 +1,3 @@
-import { faker } from "@faker-js/faker"
-
 import {
   checkStateAndTextOfItem,
   checkWelcomeMessage,
@@ -18,12 +16,14 @@ let user: User
 
 describe("Register user", () => {
   beforeEach(() => {
+    //Create a new object for user
     user = new User()
 
+    //Load the page and check that the user was got to the 'Log in' page
     cy.step("Load the page")
     reachThePage("/")
 
-    cy.step("Check that the 'Login page was loaded'")
+    cy.step("Check that the 'Login page' was loaded")
     checkStateAndTextOfItem(
       registerSel.loadPageHeader,
       basicData.stateData.beVisible,
@@ -115,7 +115,7 @@ describe("Register user", () => {
     fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, user.getExistingEmail())
+    fillInTheField(registerSel.emailField, user.getValidStaticEmail())
 
     cy.step("Fill in the 'Password' field")
     fillInTheField(registerSel.passwordField, user.getPassword())

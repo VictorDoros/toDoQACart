@@ -7,7 +7,9 @@ export default class User {
   private password: string
   private invalidEmail: string
   private invalidPassword: string
-  private existingEmail: string
+  private validStaticEmail: string
+  private validStaticPassword: string
+  private validStaticFirstName: string
 
   constructor() {
     this.firstName = faker.person.firstName()
@@ -16,7 +18,9 @@ export default class User {
     this.password = faker.internet.password()
     this.invalidEmail = "invalidEmail"
     this.invalidPassword = "123",
-    this.existingEmail = "miha123@email.com"
+    this.validStaticEmail = "miha123@email.com"
+    this.validStaticPassword = "Test1234"
+    this.validStaticFirstName = 'Miha'
   }
 
   getFirstName() {
@@ -43,7 +47,15 @@ export default class User {
     return this.invalidPassword
   }
 
-  getExistingEmail() {
-    return this.existingEmail
+  getValidStaticEmail() {
+    return this.validStaticEmail
+  }
+
+  getValidStaticPassword() {
+    return this.validStaticPassword
+  }
+
+  getValidStatisFirstName() {
+    return this.validStaticFirstName
   }
 }
