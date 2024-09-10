@@ -22,7 +22,7 @@ export const checkWelcomeMessage = (elementLocator, user) => {
     .invoke("text")
     .then((welcomeMessage) => {
       expect(welcomeMessage).to.be.oneOf([
-        `Good Morning ${user}`,
+        `Good morning ${user}`,
         `Good Day ${user}`,
         `Good Afternoon ${user}`,
         `Good Evening ${user}`,

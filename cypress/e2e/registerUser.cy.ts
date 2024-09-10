@@ -12,37 +12,26 @@ import {
 import registerSel from "../selectors/register.sel"
 import registrationTestData from "../fixtures/registrationTestData"
 import basicData from "../support/basicData"
+import User from "../models/user"
 
-let createUser = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  invalidEmail: "",
-  invalidPassword: "",
-}
+let user: User
 
 describe("Register user", () => {
   beforeEach(() => {
-    createUser.firstName = `${faker.person.firstName()}`
-    createUser.lastName = `${faker.person.lastName()}`
-    createUser.email = `${faker.internet.email()}`
-    createUser.password = `${faker.internet.password()}`
-    ;(createUser.invalidEmail = "invalidEmail"),
-      (createUser.invalidPassword = "123")
+    user = new User()
 
     cy.step("Load the page")
     reachThePage("/")
-  })
 
-  it("Should be able to register the user with valid credentials", () => {
     cy.step("Check that the 'Login page was loaded'")
     checkStateAndTextOfItem(
       registerSel.loadPageHeader,
       basicData.stateData.beVisible,
       registrationTestData.loadPageHeader
     )
+  })
 
+  it("Should be able to register the user with valid credentials", () => {
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
 
@@ -54,35 +43,28 @@ describe("Register user", () => {
     )
 
     cy.step("Fill in the 'First Name' field")
-    fillInTheField(registerSel.firstNameField, createUser.firstName)
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
 
     cy.step("Fill in the 'Last Name' field")
-    fillInTheField(registerSel.lastNameField, createUser.lastName)
+    fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, createUser.email)
+    fillInTheField(registerSel.emailField, user.getEmail())
 
     cy.step("Fill in the 'Password' field")
-    fillInTheField(registerSel.passwordField, createUser.password)
+    fillInTheField(registerSel.passwordField, user.getPassword())
 
     cy.step("Fill in the 'Confirm Password' field")
-    fillInTheField(registerSel.confirmPasswordField, createUser.password)
+    fillInTheField(registerSel.confirmPasswordField, user.getPassword())
 
     cy.step("Hit the [Sign up] button")
     clickElement(registerSel.submitButton)
 
     cy.step("Check that user has been successfully registered and logged in")
-    checkWelcomeMessage(registerSel.welcomeHeader, createUser.firstName)
+    checkWelcomeMessage(registerSel.welcomeHeader, user.getFirstName())
   })
 
   it("Should be able to register the user with valid credentials by hitting the 'Sign up' link", () => {
-    cy.step("Check that the 'Login page was loaded'")
-    checkStateAndTextOfItem(
-      registerSel.loadPageHeader,
-      basicData.stateData.beVisible,
-      registrationTestData.loadPageHeader
-    )
-
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.linkSignUp)
 
@@ -94,35 +76,28 @@ describe("Register user", () => {
     )
 
     cy.step("Fill in the 'First Name' field")
-    fillInTheField(registerSel.firstNameField, createUser.firstName)
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
 
     cy.step("Fill in the 'Last Name' field")
-    fillInTheField(registerSel.lastNameField, createUser.lastName)
+    fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, createUser.email)
+    fillInTheField(registerSel.emailField, user.getEmail())
 
     cy.step("Fill in the 'Password' field")
-    fillInTheField(registerSel.passwordField, createUser.password)
+    fillInTheField(registerSel.passwordField, user.getPassword())
 
     cy.step("Fill in the 'Confirm Password' field")
-    fillInTheField(registerSel.confirmPasswordField, createUser.password)
+    fillInTheField(registerSel.confirmPasswordField, user.getPassword())
 
     cy.step("Hit the [Sign up] button")
     clickElement(registerSel.submitButton)
 
     cy.step("Check that user has been successfully registered and logged in")
-    checkWelcomeMessage(registerSel.welcomeHeader, createUser.firstName)
+    checkWelcomeMessage(registerSel.welcomeHeader, user.getFirstName())
   })
 
   it("Should receive an error when submitting the registration form with no data", () => {
-    cy.step("Check that the 'Login page was loaded'")
-    checkStateAndTextOfItem(
-      registerSel.loadPageHeader,
-      basicData.stateData.beVisible,
-      registrationTestData.loadPageHeader
-    )
-
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
 
@@ -155,13 +130,6 @@ describe("Register user", () => {
   })
 
   it("Should receive an error when submitting the registration form with invalid email", () => {
-    cy.step("Check that the 'Login page was loaded'")
-    checkStateAndTextOfItem(
-      registerSel.loadPageHeader,
-      basicData.stateData.beVisible,
-      registrationTestData.loadPageHeader
-    )
-
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
 
@@ -178,19 +146,19 @@ describe("Register user", () => {
     checkNthElementCSSColor(registerSel.asterisk, 2, basicData.colors.white)
 
     cy.step("Fill in the 'First Name' field")
-    fillInTheField(registerSel.firstNameField, createUser.firstName)
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
 
     cy.step("Fill in the 'Last Name' field")
-    fillInTheField(registerSel.lastNameField, createUser.lastName)
+    fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, createUser.invalidEmail)
+    fillInTheField(registerSel.emailField, user.getInvalidEmail())
 
     cy.step("Fill in the 'Password' field")
-    fillInTheField(registerSel.passwordField, createUser.password)
+    fillInTheField(registerSel.passwordField, user.getPassword())
 
     cy.step("Fill in the 'Confirm Password' field")
-    fillInTheField(registerSel.confirmPasswordField, createUser.password)
+    fillInTheField(registerSel.confirmPasswordField, user.getPassword())
 
     cy.step("Hit the [Sign up] button")
     clickElement(registerSel.submitButton)
@@ -209,13 +177,6 @@ describe("Register user", () => {
   })
 
   it("Should receive an error when submitting the registration form with invalid password", () => {
-    cy.step("Check that the 'Login page was loaded'")
-    checkStateAndTextOfItem(
-      registerSel.loadPageHeader,
-      basicData.stateData.beVisible,
-      registrationTestData.loadPageHeader
-    )
-
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
 
@@ -232,19 +193,19 @@ describe("Register user", () => {
     checkNthElementCSSColor(registerSel.asterisk, 3, basicData.colors.white)
 
     cy.step("Fill in the 'First Name' field")
-    fillInTheField(registerSel.firstNameField, createUser.firstName)
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
 
     cy.step("Fill in the 'Last Name' field")
-    fillInTheField(registerSel.lastNameField, createUser.lastName)
+    fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, createUser.email)
+    fillInTheField(registerSel.emailField, user.getEmail())
 
     cy.step("Fill in the 'Password' field")
-    fillInTheField(registerSel.passwordField, createUser.invalidPassword)
+    fillInTheField(registerSel.passwordField, user.getInvalidPassword())
 
     cy.step("Fill in the 'Confirm Password' field")
-    fillInTheField(registerSel.confirmPasswordField, createUser.invalidPassword)
+    fillInTheField(registerSel.confirmPasswordField, user.getInvalidPassword())
 
     cy.step("Hit the [Sign up] button")
     clickElement(registerSel.submitButton)
@@ -263,13 +224,6 @@ describe("Register user", () => {
   })
 
   it("Should receive an error when submitting the registration form with invalid password", () => {
-    cy.step("Check that the 'Login page was loaded'")
-    checkStateAndTextOfItem(
-      registerSel.loadPageHeader,
-      basicData.stateData.beVisible,
-      registrationTestData.loadPageHeader
-    )
-
     cy.step("Hit the [Create new account] button")
     clickElement(registerSel.createNewAccountButton)
 
@@ -286,19 +240,19 @@ describe("Register user", () => {
     checkNthElementCSSColor(registerSel.asterisk, 4, basicData.colors.white)
 
     cy.step("Fill in the 'First Name' field")
-    fillInTheField(registerSel.firstNameField, createUser.firstName)
+    fillInTheField(registerSel.firstNameField, user.getFirstName())
 
     cy.step("Fill in the 'Last Name' field")
-    fillInTheField(registerSel.lastNameField, createUser.lastName)
+    fillInTheField(registerSel.lastNameField, user.getLastName())
 
     cy.step("Fill in the 'Email' field")
-    fillInTheField(registerSel.emailField, createUser.email)
+    fillInTheField(registerSel.emailField, user.getEmail())
 
     cy.step("Fill in the 'Password' field")
-    fillInTheField(registerSel.passwordField, createUser.password)
+    fillInTheField(registerSel.passwordField, user.getPassword())
 
     cy.step("Fill in the 'Confirm Password' field")
-    fillInTheField(registerSel.confirmPasswordField, createUser.invalidPassword)
+    fillInTheField(registerSel.confirmPasswordField, user.getInvalidPassword())
 
     cy.step("Hit the [Sign up] button")
     clickElement(registerSel.submitButton)
@@ -313,6 +267,50 @@ describe("Register user", () => {
       registerSel.errorText,
       basicData.stateData.beVisible,
       registrationTestData.errorConfirmPasswordField
+    )
+  })
+
+  it("Should be able to get back to the 'Home' page", () => {
+    cy.step("Hit the [Create new account] button")
+    clickElement(registerSel.createNewAccountButton)
+
+    cy.step("Confirm that the user is on registration page")
+    checkStateAndTextOfItem(
+      registerSel.registrationHeader,
+      basicData.stateData.beVisible,
+      registrationTestData.registrationHeader
+    )
+
+    cy.step("Get back to the 'Log in' page")
+    clickElement(registerSel.goBackLogin)
+
+    cy.step("Confirm that user has got back to the 'Log in' page")
+    checkStateAndTextOfItem(
+      registerSel.loadPageHeader,
+      basicData.stateData.beVisible,
+      registrationTestData.loadPageHeader
+    )
+  })
+
+  it("Should be able to get back to the 'Home' page by hitting the 'Home' link", () => {
+    cy.step("Hit the [Create new account] button")
+    clickElement(registerSel.createNewAccountButton)
+
+    cy.step("Confirm that the user is on registration page")
+    checkStateAndTextOfItem(
+      registerSel.registrationHeader,
+      basicData.stateData.beVisible,
+      registrationTestData.registrationHeader
+    )
+
+    cy.step("Hit the 'Home' link to get back to the 'Log in' page")
+    clickElement(registerSel.linkHome)
+
+    cy.step("Confirm that user has got back to the 'Log in' page")
+    checkStateAndTextOfItem(
+      registerSel.loadPageHeader,
+      basicData.stateData.beVisible,
+      registrationTestData.loadPageHeader
     )
   })
 })
