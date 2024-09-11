@@ -57,3 +57,63 @@ export const clickElementContainingText = (textElement) => {
 export const checkNthElementCSSColor = (elementLocator, orderNumber, color) => {
   cy.get(elementLocator).eq(orderNumber).should("have.css", "color", color)
 }
+
+/**
+ * Check the number of items
+ */
+export const checkLengthOfItems = (elementLocator, lengthNumber) => {
+  cy.get(elementLocator).should("have.length", lengthNumber)
+}
+
+/**
+ * Check element's text
+ */
+export const checkElementText = (elementLocator, textElement) => {
+  cy.get(elementLocator)
+    .invoke("text")
+    .then((text) => {
+      expect(text).to.eq(textElement)
+    })
+}
+
+/**
+ * Check the state of the element
+ */
+export const checkElementState = (elementLocator, elementState) => {
+  cy.get(elementLocator).should(elementState)
+}
+
+/**
+ * Check and uncheck the item
+ */
+export const checkUncheckItem = (elementLocator) => {
+  cy.get(elementLocator).then(($el) => {
+    if ($el.is(":checked")) {
+      cy.wrap($el).uncheck()
+    } else {
+      cy.wrap($el).check()
+    }
+  })
+}
+
+/**
+ * Check the state of the element
+ */
+export const checkElementHasCSSTextDecoration = (elementLocator) => {
+  cy.get(elementLocator).should(
+    "have.css",
+    "text-decoration",
+    "line-through solid rgb(145, 158, 171)"
+  )
+}
+
+/**
+ * Check the state of the element
+ */
+export const checkElementDoesNotHaveCSSTextDecoration = (elementLocator) => {
+  cy.get(elementLocator).should(
+    "not.have.css",
+    "text-decoration",
+    "line-through solid rgb(145, 158, 171)"
+  )
+}
