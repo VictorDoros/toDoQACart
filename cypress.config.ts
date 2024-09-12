@@ -1,27 +1,43 @@
 import { defineConfig } from "cypress"
+import getCompareSnapshotsPlugin from 'cypress-image-diff-js/plugin'
 
 export default defineConfig({
-  reporter: 'cypress-mochawesome-reporter',
+  reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
-    reportPageTitle: 'custom-title',
+    reportPageTitle: "custom-title",
     embeddedScreenshots: true,
     inlineAssets: true,
     saveAllAttempts: false,
   },
+
+  screenshotsFolder: "./cypress/snapshots/actual",
+
   env: {
+    //cy-grep
     grepFilterSpecs: true,
     grepOmitFiltered: true,
   },
+
   e2e: {
-    baseUrl: "https://todo.qacart.com/",
+    screenshotsFolder: "./cypress/snapshots/actual",
+
+    env: {
+      //cy-grep
+      grepFilterSpecs: true,
+      grepOmitFiltered: true,
+    },
+
+    //baseUrl: "https://todo.qacart.com/",
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      getCompareSnapshotsPlugin(on, config)
 
-      require('cypress-mochawesome-reporter/plugin')(on);
+      //mocha-awecome-reporter
+      require("cypress-mochawesome-reporter/plugin.js")(on)
 
-      require('@cypress/grep/src/plugin')(config);
-      return config;
+      //cy-grep
+      require("@cypress/grep/src/plugin")(config)
+      return config
     },
   },
 })

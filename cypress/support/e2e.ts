@@ -16,9 +16,16 @@
 // Import commands.js using ES2015 syntax:
 import "./commands"
 import "cypress-plugin-steps"
-import 'cypress-mochawesome-reporter/register';
-const registerCypressGrep = require('@cypress/grep')
+import "cypress-mochawesome-reporter/register"
+const registerCypressGrep = require("@cypress/grep")
+const  compareSnapshotCommand = require('cypress-image-diff-js/command')
 registerCypressGrep()
+compareSnapshotCommand();
+
+
+after(() => {
+    cy.task('generateReport')
+})
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

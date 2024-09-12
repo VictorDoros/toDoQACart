@@ -5,13 +5,13 @@ import {
   fillInTheField,
   reachThePage,
   checkNthElementCSSColor,
-} from "../support/commands"
+} from "../../support/commands"
 
-import User from "../models/user"
-import Environment from "../models/environment"
-import registerSel from "../selectors/register.sel"
-import registrationTestData from "../fixtures/registrationTestData"
-import basicData from "../support/basicData"
+import User from "../../models/user"
+import Environment from "../../models/environment"
+import registerSel from "../../selectors/register.sel"
+import registrationTestData from "../../fixtures/registrationTestData"
+import basicData from "../../support/basicData"
 
 let user: User
 let env: Environment

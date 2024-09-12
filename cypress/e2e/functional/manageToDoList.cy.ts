@@ -10,16 +10,16 @@ import {
   checkUncheckItem,
   checkElementHasCSSTextDecoration,
   checkElementDoesNotHaveCSSTextDecoration,
-} from "../support/commands"
+} from "../../support/commands"
 
 import { faker } from "@faker-js/faker"
-import User from "../models/user"
-import Environment from "../models/environment"
-import registerSel from "../selectors/register.sel"
-import basicData from "../support/basicData"
-import registrationTestData from "../fixtures/registrationTestData"
-import toDoSel from "../selectors/toDo.sel"
-import toDoTestData from "../fixtures/toDoTestData"
+import User from "../../models/user"
+import Environment from "../../models/environment"
+import registerSel from "../../selectors/register.sel"
+import basicData from "../../support/basicData"
+import registrationTestData from "../../fixtures/registrationTestData"
+import toDoSel from "../../selectors/toDo.sel"
+import toDoTestData from "../../fixtures/toDoTestData"
 
 describe("ToDo List", { tags: ["@functional", "@manageToDoList"] }, () => {
   let user: User

@@ -5,14 +5,14 @@ import {
   clickElement,
   checkWelcomeMessage,
   clickElementContainingText,
-} from "../support/commands"
+} from "../../support/commands"
 
-import User from "../models/user"
-import Environment from "../models/environment"
-import logoutTestData from "../fixtures/logoutTestData"
-import loginSel from "../selectors/login.sel"
-import logoutSel from "../selectors/logout.sel"
-import basicData from "../support/basicData"
+import User from "../../models/user"
+import Environment from "../../models/environment"
+import logoutTestData from "../../fixtures/logoutTestData"
+import loginSel from "../../selectors/login.sel"
+import logoutSel from "../../selectors/logout.sel"
+import basicData from "../../support/basicData"
 
 describe("Log out", { tags: ["@functional", "@logout"] }, () => {
   let user: User
