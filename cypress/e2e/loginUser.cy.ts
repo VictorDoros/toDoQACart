@@ -1,8 +1,3 @@
-import loginTestData from "../fixtures/loginTestData"
-import User from "../models/user"
-import loginSel from "../selectors/login.sel"
-import basicData from "../support/basicData"
-
 import {
   reachThePage,
   fillInTheField,
@@ -12,16 +7,24 @@ import {
   checkNthElementCSSColor,
 } from "../support/commands"
 
+import User from "../models/user"
+import Environment from "../models/environment"
+import loginTestData from "../fixtures/loginTestData"
+import loginSel from "../selectors/login.sel"
+import basicData from "../support/basicData"
+
 let user: User
+let env: Environment
 
 describe("Log in", { tags: ["@functional", "@login"] }, () => {
   beforeEach(() => {
-    //Create a new object for user
+    //Create a new object for user and environment
     user = new User()
+    env = new Environment()
 
     //Load the page and check that the user was got to the 'Log in' page
     cy.step("Load the page")
-    reachThePage("/")
+    reachThePage(env.getEnvironment())
 
     cy.step("Check that the 'Login page' was loaded")
     checkStateAndTextOfItem(

@@ -7,21 +7,24 @@ import {
   checkNthElementCSSColor,
 } from "../support/commands"
 
+import User from "../models/user"
+import Environment from "../models/environment"
 import registerSel from "../selectors/register.sel"
 import registrationTestData from "../fixtures/registrationTestData"
 import basicData from "../support/basicData"
-import User from "../models/user"
 
 let user: User
+let env: Environment
 
 describe("Register user", { tags: ["@functional", "@registerUser"] }, () => {
   beforeEach(() => {
-    //Create a new object for user
+    //Create a new object for user and environment
     user = new User()
+    env = new Environment()
 
     //Load the page and check that the user was got to the 'Log in' page
     cy.step("Load the page")
-    reachThePage("/")
+    reachThePage(env.getEnvironment())
 
     cy.step("Check that the 'Login page' was loaded")
     checkStateAndTextOfItem(

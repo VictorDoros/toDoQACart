@@ -14,6 +14,7 @@ import {
 
 import { faker } from "@faker-js/faker"
 import User from "../models/user"
+import Environment from "../models/environment"
 import registerSel from "../selectors/register.sel"
 import basicData from "../support/basicData"
 import registrationTestData from "../fixtures/registrationTestData"
@@ -22,16 +23,18 @@ import toDoTestData from "../fixtures/toDoTestData"
 
 describe("ToDo List", { tags: ["@functional", "@manageToDoList"] }, () => {
   let user: User
+  let env: Environment
   let randomWords: string
   let itemTwoChar: string
 
   beforeEach(() => {
     user = new User()
+    env = new Environment()
     randomWords = faker.word.words()
     itemTwoChar = "ab"
 
     cy.step("Reach the page")
-    reachThePage("/")
+    reachThePage(env.getEnvironment())
 
     cy.step("Register the user")
     clickElement(registerSel.createNewAccountButton)
