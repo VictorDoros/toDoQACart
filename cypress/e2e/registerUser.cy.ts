@@ -14,7 +14,7 @@ import User from "../models/user"
 
 let user: User
 
-describe("Register user", () => {
+describe("Register user", { tags: ["@functional", "@registerUser"] }, () => {
   beforeEach(() => {
     //Create a new object for user
     user = new User()

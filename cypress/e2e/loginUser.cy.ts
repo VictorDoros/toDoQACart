@@ -14,7 +14,7 @@ import {
 
 let user: User
 
-describe("Log in", () => {
+describe("Log in", { tags: ["@functional", "@login"] }, () => {
   beforeEach(() => {
     //Create a new object for user
     user = new User()

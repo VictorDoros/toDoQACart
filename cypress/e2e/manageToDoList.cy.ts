@@ -20,7 +20,7 @@ import registrationTestData from "../fixtures/registrationTestData"
 import toDoSel from "../selectors/toDo.sel"
 import toDoTestData from "../fixtures/toDoTestData"
 
-describe("ToDo List", () => {
+describe("ToDo List", { tags: ["@functional", "@manageToDoList"] }, () => {
   let user: User
   let randomWords: string
   let itemTwoChar: string

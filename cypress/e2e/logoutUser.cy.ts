@@ -13,7 +13,7 @@ import {
   clickElementContainingText,
 } from "../support/commands"
 
-describe("Log out", () => {
+describe("Log out", { tags: ["@functional", "@logout"] }, () => {
   let user: User
 
   beforeEach(() => {
