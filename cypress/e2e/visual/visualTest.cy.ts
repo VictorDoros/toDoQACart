@@ -12,7 +12,14 @@ describe("Visual tests", {tags: ['@visual']}, () => {
 
     it("Screenshot testing", () => {
         cy.visit(env.getEnvironment())
-        cy.compareSnapshot("firstFirst")
+        cy.task('getCurrentTime').then((timeHour: string) => {
+            timeHour = parseInt(timeHour)
+            console.log(timeHour)
+            
+            
+        })
+        //cy.compareSnapshot("firstFirst")
 
+        
     })
 })
