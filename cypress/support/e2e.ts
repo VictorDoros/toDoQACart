@@ -18,13 +18,12 @@ import "./commands"
 import "cypress-plugin-steps"
 import "cypress-mochawesome-reporter/register"
 const registerCypressGrep = require("@cypress/grep")
-const  compareSnapshotCommand = require('cypress-image-diff-js/command')
+const compareSnapshotCommand = require("cypress-image-diff-js/command")
 registerCypressGrep()
-compareSnapshotCommand();
-
+compareSnapshotCommand()
 
 after(() => {
-    cy.task('generateReport')
+  cy.task("generateReport")
 })
 
 // Alternatively you can use CommonJS syntax:

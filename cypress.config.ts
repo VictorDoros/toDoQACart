@@ -1,5 +1,5 @@
 import { defineConfig } from "cypress"
-import getCompareSnapshotsPlugin from 'cypress-image-diff-js/plugin'
+import getCompareSnapshotsPlugin from "cypress-image-diff-js/plugin"
 
 export default defineConfig({
   reporter: "cypress-mochawesome-reporter",
@@ -30,16 +30,12 @@ export default defineConfig({
 
     //baseUrl: "https://todo.qacart.com/",
     setupNodeEvents(on, config) {
-
-on("task",  {
-  getCurrentTime() {
-    const date = new Date()
-    date
-    return `${date.getHours()}`
-    
-  }
-  
-})
+      on("task", {
+        getCurrentTime() {
+          const date = new Date()
+          return `${date.getHours()}`
+        },
+      })
 
       getCompareSnapshotsPlugin(on, config)
 

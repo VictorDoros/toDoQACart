@@ -117,3 +117,32 @@ export const checkElementDoesNotHaveCSSTextDecoration = (elementLocator) => {
     "line-through solid rgb(145, 158, 171)"
   )
 }
+
+/**
+ * Wait until element has the corresponding state
+ */
+export const waitUntilElementHasState = (elementLocator, state) => {
+  cy.get(elementLocator).should(state)
+}
+
+/**
+ * Wait until element has the corresponding state
+ */
+export const compareSnapshot = (nameOfFile) => {
+  cy.compareSnapshot(nameOfFile)
+}
+
+/**
+ * Take the snapshot according to the day period
+ */
+export const compareSnapshotByDayPeriod = () => {
+  cy.task("getCurrentTime").then((timeHour: string) => {
+    if (parseInt(timeHour) >= 7 && parseInt(timeHour) < 12) {
+      cy.compareSnapshot("Good morning")
+    } else if (parseInt(timeHour) >= 12 && parseInt(timeHour) < 18) {
+      cy.compareSnapshot("Good afternoon")
+    } else {
+      cy.compareSnapshot("Good eveing")
+    }
+  })
+}
