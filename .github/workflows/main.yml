@@ -28,12 +28,12 @@ jobs:
         if: always()
         with:
           name: cypress-execution-visual-report
-          path: cypress/cypress-image-diff-html-report/cypress-image-diff-html-report.html
+          path: cypress-image-diff-html-report/cypress-image-diff-html-report.html
           retention-days: 30
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-screenshots
-          path: cypress/cypress-image-diff-screenshots
+          path: cypress-image-diff-screenshots
           retention-days: 30
