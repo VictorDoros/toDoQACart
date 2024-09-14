@@ -5,12 +5,10 @@ export default defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
-    reportPageTitle: "custom-title",
-    embeddedScreenshots: true,
+    reportPageTitle: 'custom-title',
     inlineAssets: true,
     saveAllAttempts: false,
   },
-
   env: {
     //cy-grep
     grepFilterSpecs: true,
@@ -18,25 +16,9 @@ export default defineConfig({
   },
 
   e2e: {
-    env: {
-      //cy-grep
-      grepFilterSpecs: true,
-      grepOmitFiltered: true,
-    },
     setupNodeEvents(on, config) {
-      on("task", {
-        getCurrentTime() {
-          const date = new Date()
-          return `${date.getHours()}`
-        },
-      })
-
       getCompareSnapshotsPlugin(on, config)
-
-      //mocha-awecome-reporter
-      require("cypress-mochawesome-reporter/plugin.js")(on)
-
-      //cy-grep
+      require("cypress-mochawesome-reporter/plugin")(on)
       require("@cypress/grep/src/plugin")(config)
       return config
     },
