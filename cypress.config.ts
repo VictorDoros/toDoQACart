@@ -5,7 +5,7 @@ export default defineConfig({
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
-    reportPageTitle: 'custom-title',
+    reportPageTitle: "custom-title",
     inlineAssets: true,
     saveAllAttempts: false,
   },
@@ -20,6 +20,14 @@ export default defineConfig({
       getCompareSnapshotsPlugin(on, config)
       require("cypress-mochawesome-reporter/plugin")(on)
       require("@cypress/grep/src/plugin")(config)
+
+      on("task", {
+        getCurrentTime() {
+          const date = new Date()
+          return `${date.getHours()}`
+        },
+      })
+      
       return config
     },
     //baseUrl: "https://todo.qacart.com/",
