@@ -11,8 +11,6 @@ export default defineConfig({
     saveAllAttempts: false,
   },
 
-  screenshotsFolder: "./cypress/snapshots/actual",
-
   env: {
     //cy-grep
     grepFilterSpecs: true,
@@ -20,15 +18,11 @@ export default defineConfig({
   },
 
   e2e: {
-    screenshotsFolder: "./cypress/snapshots/actual",
-
     env: {
       //cy-grep
       grepFilterSpecs: true,
       grepOmitFiltered: true,
     },
-
-    //baseUrl: "https://todo.qacart.com/",
     setupNodeEvents(on, config) {
       on("task", {
         getCurrentTime() {
@@ -46,5 +40,17 @@ export default defineConfig({
       require("@cypress/grep/src/plugin")(config)
       return config
     },
+    //baseUrl: "https://todo.qacart.com/",
+
+    // The quality setting for the video compression, in Constant Rate Factor (CRF).
+    // The value can be false to disable compression or a value between 0 and 51,
+    // where a lower value results in better quality (at the expense of a higher file size).
+    videoCompression: 32,
+
+    // Default height in pixels
+    viewportHeight: 1080,
+
+    // Default width in pixels
+    viewportWidth: 1920,
   },
 })

@@ -55,7 +55,7 @@ describe("Visual tests for login", { tags: ["@visual", "@login"] }, () => {
     compareSnapshot("Login, no credentials")
   })
 
-  it.only("Visual test for login with invalid email", () => {
+  it("Visual test for login with invalid email", () => {
     cy.visit(env.getEnvironment())
 
     cy.step("Fill in the email field")
@@ -74,7 +74,7 @@ describe("Visual tests for login", { tags: ["@visual", "@login"] }, () => {
     compareSnapshot("Login, invalid email")
   })
 
-  it.only("Visual test for login with invalid password", () => {
+  it("Visual test for login with invalid password", () => {
     cy.visit(env.getEnvironment())
 
     cy.step("Fill in the email field")
@@ -96,7 +96,7 @@ describe("Visual tests for login", { tags: ["@visual", "@login"] }, () => {
     compareSnapshot("Login, invalid password")
   })
 
-  it.only("Visual test for login with invalid credentials", () => {
+  it("Visual test for login with invalid credentials", () => {
     cy.visit(env.getEnvironment())
 
     cy.step("Fill in the email field")
