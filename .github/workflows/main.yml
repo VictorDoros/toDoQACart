@@ -23,4 +23,3 @@ jobs:
           path: |
           cypress/reports/html/index.html
           cypress/cypress-image-diff-html-report/cypress-image-diff-html-report.html
-        retention-days: 30
