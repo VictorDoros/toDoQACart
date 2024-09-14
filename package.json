@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "runDev": "cypress run --env env='dev'",
+    "runStaging": "cypress run --env env='staging'",
+    "runProd": "cypress run --env env='prod'"
   },
   "keywords": [],
   "author": "",

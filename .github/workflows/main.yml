@@ -1,0 +1,26 @@
+name: E2E regression
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Cypress-Test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout GitCode
+        uses: actions/checkout@v4
+
+      - name: Run Cypress Test
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run runDev
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-execution-report
+          path: |
+          cypress/reports/html/index.html
+          cypress/cypress-image-diff-html-report/cypress-image-diff-html-report.html
+        retention-days: 30
