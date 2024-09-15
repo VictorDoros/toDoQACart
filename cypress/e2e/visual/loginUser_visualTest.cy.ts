@@ -11,107 +11,113 @@ import Environment from "../../models/environment"
 import loginSel from "../../selectors/login.sel"
 import basicData from "../../support/basicData"
 
-describe("Visual tests for login", { tags: ["@visual", "@login"] }, () => {
-  let user: User
-  let env: Environment
+describe(
+  "Visual tests for login",
+  { tags: ["@visual", "@login", "@loginVisual"] },
+  () => {
+    let user: User
+    let env: Environment
 
-  beforeEach(() => {
-    user = new User()
-    env = new Environment()
-  })
+    beforeEach(() => {
+      user = new User()
+      env = new Environment()
 
-  it("Visual test for successfull login in", () => {
-    cy.visit(env.getEnvironment())
+      cy.step("Load the page")
+      cy.visit(env.getEnvironment())
+    })
 
-    cy.step("Fill in the email field")
-    fillInTheField(loginSel.emailField, user.getValidStaticEmail())
+    it("Visual test for successfull login in", () => {
+      cy.step("Fill in the email field")
+      fillInTheField(loginSel.emailField, user.getValidStaticEmail())
 
-    cy.step("Fill in the password field")
-    fillInTheField(loginSel.passwordField, user.getValidStaticPassword())
+      cy.step("Fill in the password field")
+      fillInTheField(loginSel.passwordField, user.getValidStaticPassword())
 
-    cy.step("Hit the [Login] button")
-    clickElement(loginSel.submitLoginButton)
+      cy.step("Hit the [Login] button")
+      clickElement(loginSel.submitLoginButton)
 
-    cy.step("Wait untill the page is loaded")
-    waitUntilElementHasState(
-      loginSel.logoutButton,
-      basicData.stateData.beVisible
-    )
+      cy.step("Wait untill the page is loaded")
+      waitUntilElementHasState(
+        loginSel.logoutButton,
+        basicData.stateData.beVisible
+      )
 
-    cy.step("Take the snapshot according to the day period")
-    compareSnapshotByDayPeriod()
-  })
+      cy.step("Take the snapshot according to the day period")
+      compareSnapshotByDayPeriod()
+    })
 
-  it("Visual test for login with no credentials", () => {
-    cy.visit(env.getEnvironment())
+    it("Visual test for login with no credentials", () => {
+      cy.step("Hit the [Login] button")
+      clickElement(loginSel.submitLoginButton)
 
-    cy.step("Hit the [Login] button")
-    clickElement(loginSel.submitLoginButton)
+      cy.step("Wait untill the error is displayed")
+      waitUntilElementHasState(
+        loginSel.errorEmail,
+        basicData.stateData.beVisible
+      )
 
-    cy.step("Wait untill the error is displayed")
-    waitUntilElementHasState(loginSel.errorEmail, basicData.stateData.beVisible)
+      cy.step("Take the snapshot after submitting with no credentials")
+      compareSnapshot("Login, no credentials")
+    })
 
-    cy.step("Take the snapshot after submitting with no credentials")
-    compareSnapshot("Login, no credentials")
-  })
+    it("Visual test for login with invalid email", () => {
+      cy.step("Fill in the email field")
+      fillInTheField(loginSel.emailField, user.getInvalidEmail())
 
-  it("Visual test for login with invalid email", () => {
-    cy.visit(env.getEnvironment())
+      cy.step("Fill in the password field")
+      fillInTheField(loginSel.passwordField, user.getValidStaticPassword())
 
-    cy.step("Fill in the email field")
-    fillInTheField(loginSel.emailField, user.getInvalidEmail())
+      cy.step("Hit the [Login] button")
+      clickElement(loginSel.submitLoginButton)
 
-    cy.step("Fill in the password field")
-    fillInTheField(loginSel.passwordField, user.getValidStaticPassword())
+      cy.step("Wait untill the error is displayed")
+      waitUntilElementHasState(
+        loginSel.errorEmail,
+        basicData.stateData.beVisible
+      )
 
-    cy.step("Hit the [Login] button")
-    clickElement(loginSel.submitLoginButton)
+      cy.step("Take the snapshot after submitting with invalid email")
+      compareSnapshot("Login, invalid email")
+    })
 
-    cy.step("Wait untill the error is displayed")
-    waitUntilElementHasState(loginSel.errorEmail, basicData.stateData.beVisible)
+    it("Visual test for login with invalid password", () => {
+      cy.step("Fill in the email field")
+      fillInTheField(loginSel.emailField, user.getValidStaticEmail())
 
-    cy.step("Take the snapshot after submitting with invalid email")
-    compareSnapshot("Login, invalid email")
-  })
+      cy.step("Fill in the password field")
+      fillInTheField(loginSel.passwordField, user.getInvalidPassword())
 
-  it("Visual test for login with invalid password", () => {
-    cy.visit(env.getEnvironment())
+      cy.step("Hit the [Login] button")
+      clickElement(loginSel.submitLoginButton)
 
-    cy.step("Fill in the email field")
-    fillInTheField(loginSel.emailField, user.getValidStaticEmail())
+      cy.step("Wait untill the error is displayed")
+      waitUntilElementHasState(
+        loginSel.alertMessage,
+        basicData.stateData.beVisible
+      )
 
-    cy.step("Fill in the password field")
-    fillInTheField(loginSel.passwordField, user.getInvalidPassword())
+      cy.step("Take the snapshot after submitting with invalid password")
+      compareSnapshot("Login, invalid password")
+    })
 
-    cy.step("Hit the [Login] button")
-    clickElement(loginSel.submitLoginButton)
+    it("Visual test for login with invalid credentials", () => {
+      cy.step("Fill in the email field")
+      fillInTheField(loginSel.emailField, user.getInvalidEmail())
 
-    cy.step("Wait untill the error is displayed")
-    waitUntilElementHasState(
-      loginSel.alertMessage,
-      basicData.stateData.beVisible
-    )
+      cy.step("Fill in the password field")
+      fillInTheField(loginSel.passwordField, user.getInvalidPassword())
 
-    cy.step("Take the snapshot after submitting with invalid password")
-    compareSnapshot("Login, invalid password")
-  })
+      cy.step("Hit the [Login] button")
+      clickElement(loginSel.submitLoginButton)
 
-  it("Visual test for login with invalid credentials", () => {
-    cy.visit(env.getEnvironment())
+      cy.step("Wait untill the error is displayed")
+      waitUntilElementHasState(
+        loginSel.errorEmail,
+        basicData.stateData.beVisible
+      )
 
-    cy.step("Fill in the email field")
-    fillInTheField(loginSel.emailField, user.getInvalidEmail())
-
-    cy.step("Fill in the password field")
-    fillInTheField(loginSel.passwordField, user.getInvalidPassword())
-
-    cy.step("Hit the [Login] button")
-    clickElement(loginSel.submitLoginButton)
-
-    cy.step("Wait untill the error is displayed")
-    waitUntilElementHasState(loginSel.errorEmail, basicData.stateData.beVisible)
-
-    cy.step("Take the snapshot after submitting with invalid credentials")
-    compareSnapshot("Login, invalid credentials")
-  })
-})
+      cy.step("Take the snapshot after submitting with invalid credentials")
+      compareSnapshot("Login, invalid credentials")
+    })
+  }
+)

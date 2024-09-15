@@ -146,3 +146,10 @@ export const compareSnapshotByDayPeriod = () => {
     }
   })
 }
+
+/**
+ * Take the snapshot according to the day period
+ */
+export const unfocusField = () => {
+  cy.get("body").click(0, 0)
+}
