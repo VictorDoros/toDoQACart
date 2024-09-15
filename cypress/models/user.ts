@@ -26,7 +26,6 @@ export default class User {
   getFirstName() {
     return this.firstName
   }
-  
 
   getLastName() {
     return this.lastName
