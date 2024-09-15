@@ -137,9 +137,9 @@ export const compareSnapshot = (nameOfFile) => {
  */
 export const compareSnapshotByDayPeriod = (nameOfFile) => {
   cy.task("getCurrentTime").then((timeHour: string) => {
-    if (parseInt(timeHour) >= 6 && parseInt(timeHour) < 12) {
+    if (parseInt(timeHour) >= 6 && parseInt(timeHour) <= 12) {
       cy.compareSnapshot(`Good morning - ${nameOfFile}`)
-    } else if (parseInt(timeHour) >= 12 && parseInt(timeHour) < 18) {
+    } else if (parseInt(timeHour) > 12 && parseInt(timeHour) <= 17) {
       cy.compareSnapshot(`Good afternoon - ${nameOfFile}`)
     } else {
       cy.compareSnapshot(`Good evening - ${nameOfFile}`)
