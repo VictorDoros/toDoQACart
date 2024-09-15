@@ -23,6 +23,7 @@ jobs:
           name: Cypress artifacts
           path: |
             cypress/reports/html/index.html
+            cypress/screenshots
             cypress-image-diff-html-report/cypress-image-diff-html-report.html
             cypress-image-diff-screenshots
           retention-days: 30

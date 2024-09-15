@@ -2,6 +2,10 @@ import { defineConfig } from "cypress"
 import getCompareSnapshotsPlugin from "cypress-image-diff-js/plugin"
 
 export default defineConfig({
+  retries: {
+    runMode: 2,
+    openMode: 0,
+  },
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     charts: true,
@@ -31,6 +35,9 @@ export default defineConfig({
       return config
     },
     //baseUrl: "https://todo.qacart.com/",
+
+    // Whether Cypress will take a screenshot when a test fails during cypress run.
+    screenshotOnRunFailure: true,
 
     // The quality setting for the video compression, in Constant Rate Factor (CRF).
     // The value can be false to disable compression or a value between 0 and 51,
