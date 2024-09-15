@@ -1,4 +1,5 @@
 import {
+  reachThePage,
   fillInTheField,
   clickElement,
   waitUntilElementHasState,
@@ -23,7 +24,7 @@ describe(
       env = new Environment()
 
       cy.step("Load the page")
-      cy.visit(env.getEnvironment())
+      reachThePage(env.getEnvironment())
 
       cy.step("Hit the [Create new account] button")
       clickElement(registerSel.createNewAccountButton)

@@ -135,14 +135,14 @@ export const compareSnapshot = (nameOfFile) => {
 /**
  * Take the snapshot according to the day period
  */
-export const compareSnapshotByDayPeriod = () => {
+export const compareSnapshotByDayPeriod = (nameOfFile) => {
   cy.task("getCurrentTime").then((timeHour: string) => {
     if (parseInt(timeHour) >= 6 && parseInt(timeHour) < 12) {
-      cy.compareSnapshot("Good morning")
+      cy.compareSnapshot(`Good morning - ${nameOfFile}`)
     } else if (parseInt(timeHour) >= 12 && parseInt(timeHour) < 18) {
-      cy.compareSnapshot("Good afternoon")
+      cy.compareSnapshot(`Good afternoon - ${nameOfFile}`)
     } else {
-      cy.compareSnapshot("Good eveing")
+      cy.compareSnapshot(`Good evening - ${nameOfFile}`)
     }
   })
 }

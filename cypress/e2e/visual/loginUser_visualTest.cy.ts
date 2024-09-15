@@ -1,4 +1,5 @@
 import {
+  reachThePage,
   fillInTheField,
   clickElement,
   waitUntilElementHasState,
@@ -23,7 +24,7 @@ describe(
       env = new Environment()
 
       cy.step("Load the page")
-      cy.visit(env.getEnvironment())
+      reachThePage(env.getEnvironment())
     })
 
     it("Visual test for successfull login in", () => {
@@ -43,7 +44,7 @@ describe(
       )
 
       cy.step("Take the snapshot according to the day period")
-      compareSnapshotByDayPeriod()
+      compareSnapshotByDayPeriod("Login")
     })
 
     it("Visual test for login with no credentials", () => {

@@ -55,7 +55,7 @@ describe(
       checkWelcomeMessage(registerSel.welcomeHeader, user.getFirstName())
     })
 
-    it("Should be able to add a ToDo", () => {
+    it("Should be able to add a ToDo item", () => {
       cy.step("Click on 'add' icon")
       clickElement(toDoSel.addIcon)
 
