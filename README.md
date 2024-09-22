@@ -1,5 +1,5 @@
 # ToDo QA Cart App
-For testing purposes the application called [QAcart Todo App](https://todo.qacart.com/) was used, which allows the the user to create, edit and delete a list of tasks (named as todos).
+For testing purposes the application [QAcart Todo App](https://todo.qacart.com/) was used, which allows the user to create, edit and delete a list of tasks (called todos).
 
 The purpose of the project is to show one of the ways on structuring a big project in Cypress. 
 
@@ -21,7 +21,7 @@ npm install
 
 _Open mode:_
 ```
-npx cypress opem
+npx cypress open
 ```
 _Headless mode:_
 ```
