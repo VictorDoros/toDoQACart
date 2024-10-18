@@ -26,7 +26,7 @@ export const checkWelcomeMessage = (elementLocator, user) => {
         `Good Day ${user}`,
         `Good afternoon ${user}`,
         `Good Evening ${user}`,
-        `Time to sleep ${user}`
+        `Time to sleep ${user}`,
       ])
     })
 }
