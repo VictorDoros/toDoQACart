@@ -26,6 +26,7 @@ export const checkWelcomeMessage = (elementLocator, user) => {
         `Good Day ${user}`,
         `Good afternoon ${user}`,
         `Good Evening ${user}`,
+        `Time to sleep ${user}`
       ])
     })
 }
@@ -137,12 +138,12 @@ export const compareSnapshot = (nameOfFile) => {
  */
 export const compareSnapshotByDayPeriod = (nameOfFile) => {
   cy.task("getCurrentTime").then((timeHour: string) => {
-    if (parseInt(timeHour) >= 6 && parseInt(timeHour) <= 12) {
+    if (parseInt(timeHour) >= 7 && parseInt(timeHour) <= 12) {
       cy.compareSnapshot(`Good morning - ${nameOfFile}`)
     } else if (parseInt(timeHour) > 12 && parseInt(timeHour) <= 17) {
       cy.compareSnapshot(`Good afternoon - ${nameOfFile}`)
     } else {
-      cy.compareSnapshot(`Good evening - ${nameOfFile}`)
+      cy.compareSnapshot(`Time to sleep - ${nameOfFile}`)
     }
   })
 }

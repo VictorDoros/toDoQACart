@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "runDev": "cypress run --env env='dev'",
+    "runDev": "cypress run --env env='dev',grepTags='@visual'",
     "runStaging": "cypress run --env env='staging'",
     "runProd": "cypress run --env env='prod'"
   },
