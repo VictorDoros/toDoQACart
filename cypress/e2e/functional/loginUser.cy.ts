@@ -11,7 +11,7 @@ import User from "../../models/user"
 import Environment from "../../models/environment"
 import loginTestData from "../../fixtures/loginTestData"
 import loginSel from "../../selectors/login.sel"
-import basicData from "../../support/basicData"
+import basicData from "../../support/basicData" 
 
 let user: User
 let env: Environment
