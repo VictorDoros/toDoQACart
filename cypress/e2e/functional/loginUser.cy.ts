@@ -27,7 +27,7 @@ describe(
 
       //Load the page and check that the user was got to the 'Log in' page
       cy.step("Load the page")
-      reachThePage(env.getEnvironment())
+      reachThePage(env.getEnvironment()) 
 
       cy.step("Check that the 'Login page' was loaded")
       checkStateAndTextOfItem(
