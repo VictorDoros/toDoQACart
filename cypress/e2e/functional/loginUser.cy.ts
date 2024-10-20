@@ -11,7 +11,7 @@ import User from "../../models/user"
 import Environment from "../../models/environment"
 import loginTestData from "../../fixtures/loginTestData"
 import loginSel from "../../selectors/login.sel"
-import basicData from "../../support/basicData" 
+import basicData from "../../support/basicData"
 
 let user: User
 let env: Environment
@@ -27,7 +27,7 @@ describe(
 
       //Load the page and check that the user was got to the 'Log in' page
       cy.step("Load the page")
-      reachThePage(env.getEnvironment()) 
+      reachThePage(env.getEnvironment())
 
       cy.step("Check that the 'Login page' was loaded")
       checkStateAndTextOfItem(
