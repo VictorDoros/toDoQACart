@@ -21,11 +21,11 @@ npm install
 
 _Open mode:_
 ```
-npx cypress open
+npx cypress open --env env='prod'
 ```
 _Headless mode:_
 ```
-npx cypress run
+npx cypress run --env env='prod'
 ```
 
 NOTE:
