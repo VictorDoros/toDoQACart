@@ -26,7 +26,14 @@ npx cypress open
 _Headless mode:_
 ```
 npx cypress run
-```   
+```
+
+NOTE:
+
+--env env='prod' flag is added to specify the environment that is wanted to be run, configured in contactListApp/cypress/models/environment.ts (this is just an example on how it looks like when it's desired to run on multiple environments) :
+* dev
+* staging
+* prod 
    
 # Dependencies used within the project
 1. @cypress/grep -  [@cypress/grep documentation](https://www.npmjs.com/package/@cypress/grep)
