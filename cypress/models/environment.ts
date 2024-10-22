@@ -5,7 +5,7 @@ export default class Environment {
       return "https://todo.qacart.com/"
     } else if (env === "staging") {
       return "https://todo.qacart.com/"
-    } else {
+    } else if (env === "prod") {
       return "https://todo.qacart.com/"
     }
   }
