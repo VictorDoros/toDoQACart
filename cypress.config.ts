@@ -27,8 +27,7 @@ export default defineConfig({
 
       on("task", {
         getCurrentTime() {
-          const date = new Date()
-          return `${date.getUTCHours()}`
+          return `${new Date().getUTCHours()}`
         },
       })
 
