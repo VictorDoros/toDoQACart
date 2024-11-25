@@ -4,8 +4,17 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Which browser to test
+        required: true
+        options:
+          - chromium
+          - electron
+          - firefox
   schedule:
-    - cron:  '0 8 * * *'    
+    - cron: "0 8 * * *"
 
 jobs:
   Cypress-Test:
