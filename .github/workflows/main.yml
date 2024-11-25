@@ -4,6 +4,15 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Which browser to run
+        required: true
+        options:
+          - electron
+          - chromium
+          - firefox
   schedule:
     - cron: "0 8 * * *"
 
@@ -17,7 +26,7 @@ jobs:
       - name: Run Cypress Test
         uses: cypress-io/github-action@v6
         with:
-          command: npm run runDev
+          command: npx cypress run --browser $github.event.inputs.browser || electron --env env='prod'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
