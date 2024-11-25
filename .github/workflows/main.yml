@@ -25,7 +25,9 @@ jobs:
 
       - name: Run Cypress Test
         uses: cypress-io/github-action@v6
-          run: npx cypress run --browser ${{ github.event.inputs.browser || 'electron' }} --env env="prod"
+        with:
+          command: |
+            npx cypress run --browser ${{ github.event.inputs.browser || 'electron' }} --env env="prod"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
