@@ -11,7 +11,7 @@ on:
         required: true
         options:
           - electron
-          - chromium
+          - chrome
           - firefox
   schedule:
     - cron: "0 8 * * *"
