@@ -19,10 +19,10 @@ export default class User {
     this.password = faker.internet.password()
     this.invalidEmail = "invalidEmail"
     this.invalidPassword = "123"
-    this.validStaticEmail = "jonsnow@email.com"
+    this.validStaticEmail = "nedstark@email.com"
     this.validStaticPassword = "Test1234"
-    this.validStaticFirstName = "Jon"
-    this.validStaticLastName = "Snow"
+    this.validStaticFirstName = "Ned"
+    this.validStaticLastName = "Stark"
   }
 
   getFirstName() {
