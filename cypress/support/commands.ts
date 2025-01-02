@@ -10,14 +10,18 @@ export const reachThePage = (url: string) => {
 /**
  * Check the current state of the item and its text
  */
-export const checkStateAndTextOfItem = (elementLocator, state, text) => {
+export const checkStateAndTextOfItem = (
+  elementLocator: string,
+  state: string,
+  text: string
+) => {
   cy.get(elementLocator).should(state).and("have.text", text)
 }
 
 /**
  * Check the welcome message after user registering or logging in
  */
-export const checkWelcomeMessage = (elementLocator, user) => {
+export const checkWelcomeMessage = (elementLocator: string, user: string) => {
   cy.get(elementLocator)
     .invoke("text")
     .then((welcomeMessage) => {
@@ -32,42 +36,52 @@ export const checkWelcomeMessage = (elementLocator, user) => {
 /**
  * Fill in the input field
  */
-export const fillInTheField = (elementLocator, value) => {
+export const fillInTheField = (elementLocator: string, value: string) => {
   cy.get(elementLocator).type(value)
 }
 
 /**
  * Click on the element
  */
-export const clickElement = (elementLocator) => {
+export const clickElement = (elementLocator: string) => {
   cy.get(elementLocator).click()
 }
 
 /**
  * Click on the element containing a specific text
  */
-export const clickElementContainingText = (textElement) => {
+export const clickElementContainingText = (textElement: string) => {
   cy.contains(textElement).click()
 }
 
 /**
  * Check the color of the nth element
  */
-export const checkNthElementCSSColor = (elementLocator, orderNumber, color) => {
+export const checkNthElementCSSColor = (
+  elementLocator: string,
+  orderNumber: number,
+  color: string
+) => {
   cy.get(elementLocator).eq(orderNumber).should("have.css", "color", color)
 }
 
 /**
  * Check the number of items
  */
-export const checkLengthOfItems = (elementLocator, lengthNumber) => {
+export const checkLengthOfItems = (
+  elementLocator: string,
+  lengthNumber: number
+) => {
   cy.get(elementLocator).should("have.length", lengthNumber)
 }
 
 /**
  * Check element's text
  */
-export const checkElementText = (elementLocator, textElement) => {
+export const checkElementText = (
+  elementLocator: string,
+  textElement: string
+) => {
   cy.get(elementLocator)
     .invoke("text")
     .then((text) => {
@@ -78,14 +92,17 @@ export const checkElementText = (elementLocator, textElement) => {
 /**
  * Check the state of the element
  */
-export const checkElementState = (elementLocator, elementState) => {
+export const checkElementState = (
+  elementLocator: string,
+  elementState: string
+) => {
   cy.get(elementLocator).should(elementState)
 }
 
 /**
  * Check and uncheck the item
  */
-export const checkUncheckItem = (elementLocator) => {
+export const checkUncheckItem = (elementLocator: string) => {
   cy.get(elementLocator).then(($el) => {
     if ($el.is(":checked")) {
       cy.wrap($el).uncheck()
@@ -98,7 +115,7 @@ export const checkUncheckItem = (elementLocator) => {
 /**
  * Check the state of the element
  */
-export const checkElementHasCSSTextDecoration = (elementLocator) => {
+export const checkElementHasCSSTextDecoration = (elementLocator: string) => {
   cy.get(elementLocator).should(
     "have.css",
     "text-decoration",
@@ -109,7 +126,9 @@ export const checkElementHasCSSTextDecoration = (elementLocator) => {
 /**
  * Check the state of the element
  */
-export const checkElementDoesNotHaveCSSTextDecoration = (elementLocator) => {
+export const checkElementDoesNotHaveCSSTextDecoration = (
+  elementLocator: string
+) => {
   cy.get(elementLocator).should(
     "not.have.css",
     "text-decoration",
@@ -120,21 +139,24 @@ export const checkElementDoesNotHaveCSSTextDecoration = (elementLocator) => {
 /**
  * Wait until element has the corresponding state
  */
-export const waitUntilElementHasState = (elementLocator, state) => {
+export const waitUntilElementHasState = (
+  elementLocator: string,
+  state: string
+) => {
   cy.get(elementLocator).should(state)
 }
 
 /**
  * Wait until element has the corresponding state
  */
-export const compareSnapshot = (nameOfFile) => {
+export const compareSnapshot = (nameOfFile: string) => {
   cy.compareSnapshot(nameOfFile)
 }
 
 /**
  * Take the snapshot according to the day period
  */
-export const compareSnapshotByDayPeriod = (nameOfFile) => {
+export const compareSnapshotByDayPeriod = (nameOfFile: string) => {
   cy.task("getCurrentTime").then((timeHour: string) => {
     if (parseInt(timeHour) >= 6 && parseInt(timeHour) <= 12) {
       cy.compareSnapshot(`Good morning - ${nameOfFile}`)
